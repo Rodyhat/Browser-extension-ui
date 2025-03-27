@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser extension manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <section class="gen-logo">
+            <div class="logo">
+                <img src="./images/logo.svg" alt="">
+            </div>
+            <div class="theme-logo">
+                <img src="./images/icon-moon.svg" id="moon" alt="">
+                <img src="./images/icon-sun.svg" id="sun" alt="">
+            </div>
+        </section>
+        <div class="gen-state">
+            <section class="extension-state">
+                <h1>Extension List</h1>
+                <div class="list-gen-div">
+                    <button id="all">All</button>
+                    <button id="active">Active</button>
+                    <button id="inactive">Inactive</button>
+                </div>
+            </section>
+            <section class="extension-list">
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-devlens.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">DevLens</h4>
+                            <p>Quality inspect page layouts and visualize element boundaries. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-style-spy.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">StyleSpy</h4>
+                            <p>Instantly analyze and copy CSS from any webpage element. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-speed-boost.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">SpeedBoost</h4>
+                            <p>Optimize browser resource usage to accelerate page loading. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-json-wizard.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">JSONWizard</h4>
+                            <p>Formats, validates and prettifies JSON responses in-browser. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-tab-master-pro.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">TabMaster Pro</h4>
+                            <p>Organizes browser tabs into groups and sessions. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-viewport-buddy.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">ViewportBuddy</h4>
+                            <p>Simulate various screen revolutions directly within the browser. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-markup-notes.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">Markup Notes</h4>
+                            <p>Enables annotation and notes directly onto webpages for collaborative debugging. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-grid-guides.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">GridGuides</h4>
+                            <p>Overlay customizable grids and alignment guides on any webpages. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-palette-picker.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">Palette Picker</h4>
+                            <p>Instantly extracts color palette from any webpage. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-link-checker.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">LinkChecker</h4>
+                            <p>Scans and highlight broken links on any page. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button id="remove">Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-dom-snapshot.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">DOM Snapshot</h4>
+                            <p>Capture and export DOM structures quickly. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button>Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lens">
+                    <div class="lens-content">
+                        <img src="./images/logo-console-plus.svg" alt="">
+                        <div class="lens-text">
+                            <h4 id="h4">ConsolePlus</h4>
+                            <p>Enhanced developer console with advanced filtering and logging. </p>
+                        </div>
+                    </div>
+                    <div class="lens-state">
+                        <button>Remove</button>
+                        <div class="on-off">
+                            <div class="off-on"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+<script src="script.js"></script>
+
+</html>
