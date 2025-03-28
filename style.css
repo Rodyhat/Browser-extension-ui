@@ -35,7 +35,7 @@ body {
   width: 18px;
 }
 
-#sun{
+#sun {
   display: none;
 }
 .gen-state {
@@ -54,8 +54,8 @@ body {
   width: 200px;
 }
 
-#all{
-  background-color: #C7231A;
+#all {
+  background-color: #c7231a;
   color: white;
 }
 
@@ -100,6 +100,7 @@ p {
 }
 
 button {
+  /* color: rgba(255, 255, 255, 0.278); */
   border: none;
   background-color: white;
   border-radius: 30px;
@@ -107,20 +108,30 @@ button {
   font-weight: 600;
 }
 
-.on-off {
+.switchDiv {
   background-color: #c6c6c8;
-  border-radius: 47%;
+  border-radius: 45%;
   width: 35px;
   height: 20px;
   display: flex;
   align-items: center;
+  /* justify-content: center; */
 }
 
-.off-on {
+#switchControl {
   background-color: white;
   border-radius: 50%;
   width: 15px;
   height: 15px;
+}
+
+.active {
+  background-color: #f25e54;
+}
+
+.moved {
+  transform: translateX(19px);
+  transition: transform 0.3s;
 }
 
 /* responsiveness */
