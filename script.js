@@ -12,6 +12,7 @@ const remove = document.querySelectorAll("#remove");
 const h1 = document.querySelector("h1");
 const switchDivs = document.querySelectorAll(".switchDiv");
 const switchControls = document.querySelectorAll("#switchControl");
+const messageContainer = document.getElementById("displayText"); // Element to show the message
 
 // moon and sun , light and dark mode
 
@@ -86,33 +87,34 @@ switchControls.forEach((control, index) => {
   });
 });
 
+// Function to hide the message
+const hideMessage = () => {
+  messageContainer.textContent = "";
+  messageContainer.style.display = "none";
+};
+
+// all button
+all.addEventListener("click", () => {
+  all.style.color = "white";
+  all.style.backgroundColor = "#f25e54";
+  active.style.color = "black";
+  active.style.backgroundColor = "white";
+  inactive.style.color = "black";
+  inactive.style.backgroundColor = "white";
+
+  // Show all elements
+  switchDivs.forEach((div) => {
+    div.style.display = "flex"; // Ensures the correct display type
+  });
+
+  lensDiv.forEach((lens) => {
+    lens.style.display = "block"; // Show the parent container
+  });
+});
+
 // active and inactive button
 
-// filtering active extension
-// active.addEventListener("click", () => {
-//   active.style.backgroundColor = "#f25e54";
-//   active.style.color = "white";
-//   all.style.color = "black";
-//   all.style.backgroundColor = "white";
-//   inactive.style.color = "black";
-//   inactive.style.backgroundColor = "white";
-
-//   let hasActive = false;
-
-//   // show only active extensions
-//   switchDivs.forEach((div) => {
-//     // div.style.display = div.classList.contains("active") ? "block" : "none";
-//     if (div.classList.contains("active")) {
-//       div.style.display = "block"; // Show active extensions
-//       div.scrollIntoView({ behavior: "smooth" });
-//       hasActive = true;
-//     } else {
-//       div.style.display = "none"; // Hide inactive extensions
-//     }
-//   });
-// });
-
-
+// active button
 active.addEventListener("click", () => {
   active.style.backgroundColor = "#f25e54";
   active.style.color = "white";
@@ -123,15 +125,55 @@ active.addEventListener("click", () => {
 
   let hasActive = false;
 
-  // Show only active elements, hide inactive ones
-  switchDivs.forEach((div) => {
-    if (div.classList.contains("active")) {
-      div.style.display = "flex"; // Ensure the correct display type
-      div.scrollIntoView({ behavior: "smooth" });
+  // Iterate over all lens containers
+  lensDiv.forEach((lens) => {
+    let switchDiv = lens.querySelector(".switchDiv"); // Find switchDiv inside lens
+    if (switchDiv && switchDiv.classList.contains("active")) {
+      lens.style.display = "block"; // Show parent lens
+      switchDiv.style.display = "flex"; // Ensure the switchDiv is displayed
+      switchDiv.scrollIntoView({ behavior: "smooth" });
       hasActive = true;
     } else {
-      div.style.display = "none"; // Hide inactive ones
+      lens.style.display = "none"; // Hide if no active switchDiv is found
     }
   });
+
+  if (!hasActive) {
+    messageContainer.textContent = "No active element found!";
+    messageContainer.style.display = "block";
+  } else {
+    hideMessage();
+  }
 });
 
+// inactive button
+inactive.addEventListener("click", () => {
+  inactive.style.backgroundColor = "#f25e54";
+  inactive.style.color = "white";
+  all.style.color = "black";
+  all.style.backgroundColor = "white";
+  active.style.color = "black";
+  active.style.backgroundColor = "white";
+
+  let hasInActive = false;
+
+  // Iterate over all lens containers
+  lensDiv.forEach((lens) => {
+    let switchDiv = lens.querySelector(".switchDiv"); // Find switchDiv inside lens
+    if (switchDiv && !switchDiv.classList.contains("active")) {
+      lens.style.display = "block"; // Show parent lens
+      switchDiv.style.display = "flex"; // Ensure the switchDiv is displayed
+      switchDiv.scrollIntoView({ behavior: "smooth" });
+      hasInActive = true;
+    } else {
+      lens.style.display = "none"; // Hide if no active switchDiv is found
+    }
+  });
+
+  if (!hasInActive) {
+    messageContainer.textContent = "No inactive element found!";
+    messageContainer.style.display = "block";
+  } else {
+    hideMessage();
+  }
+});
