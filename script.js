@@ -1,3 +1,4 @@
+// new code();
 const all = document.getElementById("all");
 const active = document.getElementById("active");
 const inactive = document.getElementById("inactive");
@@ -12,46 +13,92 @@ const remove = document.querySelectorAll("#remove");
 const h1 = document.querySelector("h1");
 const switchDivs = document.querySelectorAll(".switchDiv");
 const switchControls = document.querySelectorAll("#switchControl");
-const messageContainer = document.getElementById("displayText"); // Element to show the message
+const messageContainer = document.getElementById("displayText");
+const extension = document.getElementById("extension");
 
-// moon and sun , light and dark mode
+let isDarkMode = false;
 
+// Function to reset button styles in dark mode
+function resetButtonStyles() {
+  all.style.color = "white";
+  all.style.backgroundColor = "#2F354B";
+  active.style.color = "white";
+  active.style.backgroundColor = "#525869";
+  inactive.style.color = "white";
+  inactive.style.backgroundColor = "#525869";
+}
+// Function to reset button styles in light mode
+function resetButtonStylesLight() {
+  all.style.color = "black";
+  all.style.backgroundColor = "white";
+  active.style.color = "black";
+  active.style.backgroundColor = "white";
+  inactive.style.color = "black";
+  inactive.style.backgroundColor = "white";
+}
+
+// Function to handle button clicks
+function handleButtonClick(button) {
+  if (isDarkMode) {
+    resetButtonStyles(); // Reset all buttons before applying the active style
+    button.style.color = "black";
+    button.style.backgroundColor = "red";
+  }
+
+  if (!isDarkMode) {
+    resetButtonStylesLight(); // Reset all buttons before applying the active style
+    button.style.color = "white";
+    button.style.backgroundColor = "#C9221C";
+  }
+}
+
+// Dark mode activation
 moon.addEventListener("click", () => {
+  isDarkMode = true;
+
   moon.style.display = "none";
   sun.style.display = "block";
   body.style.background = "linear-gradient(180deg, #040918 0%, #091540 100%)";
   genLogo.style.backgroundColor = "#1F2535";
+  extension.style.color = "white";
+
   lensDiv.forEach((element) => {
     element.style.backgroundColor = "#1F2535";
   });
-  //
+
   paragraph.forEach((element) => {
     element.style.color = "rgba(243, 242, 242, 0.48)";
   });
+
   headingDiv.forEach((element) => {
     element.style.color = "white";
   });
+
   remove.forEach((element) => {
     element.style.color = "white";
-  });
-  remove.forEach((element) => {
     element.style.backgroundColor = "#1F2535";
-  });
-  h1.style.color = "white";
-  remove.forEach((element) => {
     element.style.border = "1px solid rgba(243, 242, 242, 0.3)";
   });
+
+  h1.style.color = "white";
+  resetButtonStyles(); // Apply dark mode button styles
 });
 
+// Light mode activation
 sun.addEventListener("click", () => {
+  isDarkMode = false;
+
   moon.style.display = "block";
   sun.style.display = "none";
   genLogo.style.backgroundColor = "white";
   body.style.background = "linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%)";
   h1.style.color = "black";
+  extension.style.color = "black";
+
   lensDiv.forEach((element) => {
     element.style.backgroundColor = "white";
   });
+
   headingDiv.forEach((element) => {
     element.style.color = "black";
   });
@@ -65,24 +112,30 @@ sun.addEventListener("click", () => {
     element.style.backgroundColor = "white";
     element.style.border = "1px solid #0000003c";
   });
+
+  // Default button styles for light mode
+  all.style.color = "white";
+  all.style.backgroundColor = "#c9221c";
+  active.style.color = "black";
+  active.style.backgroundColor = "white";
+  inactive.style.color = "black";
+  inactive.style.backgroundColor = "white";
 });
 
-// toggle button, for active and inactive mode
-
+// // Toggle button for active/inactive mode
 switchControls.forEach((control, index) => {
   control.addEventListener("click", () => {
     let div = switchDivs[index];
     div.classList.toggle("active");
     control.classList.toggle("moved");
 
-    // Toggle position of switchControl using transform
     if (
       control.style.transform === "translateX(0px)" ||
       control.style.transform === ""
     ) {
-      control.style.transform = "translateX(19px)"; // Move to the left
+      control.style.transform = "translateX(19px)";
     } else {
-      control.style.transform = "translateX(0px)"; // Move back to the right
+      control.style.transform = "translateX(0px)";
     }
   });
 });
@@ -93,48 +146,33 @@ const hideMessage = () => {
   messageContainer.style.display = "none";
 };
 
-// all button
+// Click event for "All" button
 all.addEventListener("click", () => {
-  all.style.color = "white";
-  all.style.backgroundColor = "#f25e54";
-  active.style.color = "black";
-  active.style.backgroundColor = "white";
-  inactive.style.color = "black";
-  inactive.style.backgroundColor = "white";
+  handleButtonClick(all);
 
-  // Show all elements
   switchDivs.forEach((div) => {
-    div.style.display = "flex"; // Ensures the correct display type
+    div.style.display = "flex";
   });
 
   lensDiv.forEach((lens) => {
-    lens.style.display = "block"; // Show the parent container
+    lens.style.display = "block";
   });
 });
 
-// active and inactive button
-
-// active button
+// Click event for "Active" button
 active.addEventListener("click", () => {
-  active.style.backgroundColor = "#f25e54";
-  active.style.color = "white";
-  all.style.color = "black";
-  all.style.backgroundColor = "white";
-  inactive.style.color = "black";
-  inactive.style.backgroundColor = "white";
+  handleButtonClick(active);
 
   let hasActive = false;
-
-  // Iterate over all lens containers
   lensDiv.forEach((lens) => {
-    let switchDiv = lens.querySelector(".switchDiv"); // Find switchDiv inside lens
+    let switchDiv = lens.querySelector(".switchDiv");
     if (switchDiv && switchDiv.classList.contains("active")) {
-      lens.style.display = "block"; // Show parent lens
-      switchDiv.style.display = "flex"; // Ensure the switchDiv is displayed
+      lens.style.display = "block";
+      switchDiv.style.display = "flex";
       switchDiv.scrollIntoView({ behavior: "smooth" });
       hasActive = true;
     } else {
-      lens.style.display = "none"; // Hide if no active switchDiv is found
+      lens.style.display = "none";
     }
   });
 
@@ -146,27 +184,20 @@ active.addEventListener("click", () => {
   }
 });
 
-// inactive button
+// Click event for "Inactive" button
 inactive.addEventListener("click", () => {
-  inactive.style.backgroundColor = "#f25e54";
-  inactive.style.color = "white";
-  all.style.color = "black";
-  all.style.backgroundColor = "white";
-  active.style.color = "black";
-  active.style.backgroundColor = "white";
+  handleButtonClick(inactive);
 
   let hasInActive = false;
-
-  // Iterate over all lens containers
   lensDiv.forEach((lens) => {
-    let switchDiv = lens.querySelector(".switchDiv"); // Find switchDiv inside lens
+    let switchDiv = lens.querySelector(".switchDiv");
     if (switchDiv && !switchDiv.classList.contains("active")) {
-      lens.style.display = "block"; // Show parent lens
-      switchDiv.style.display = "flex"; // Ensure the switchDiv is displayed
+      lens.style.display = "block";
+      switchDiv.style.display = "flex";
       switchDiv.scrollIntoView({ behavior: "smooth" });
       hasInActive = true;
     } else {
-      lens.style.display = "none"; // Hide if no active switchDiv is found
+      lens.style.display = "none";
     }
   });
 
@@ -176,4 +207,13 @@ inactive.addEventListener("click", () => {
   } else {
     hideMessage();
   }
+});
+
+// remove functionality
+// select all remove button
+
+document.querySelectorAll("#remove").forEach((button) => {
+  button.addEventListener("click", function () {
+    this.closest(".lens").remove(); // Removes the closest parent div with class "lens"
+  });
 });
